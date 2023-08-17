@@ -1,0 +1,13 @@
+.btn{
+    margin: 10px;
+    background-color: rgb(17, 17, 17);
+    color:white;
+
+
+}
+.btn:hover {
+    background-color: white;
+    border-color: aliceblue;
+    color: black;
+    
+}
