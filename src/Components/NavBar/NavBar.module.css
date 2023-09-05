@@ -1,13 +1,17 @@
-.btn{
-    margin: 10px;
-    background-color: rgb(17, 17, 17);
-    color:white;
 
 
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
 }
-.btn:hover {
-    background-color: white;
-    border-color: aliceblue;
-    color: black;
-    
+
+
+.button{
+    display:flex;
+    column-gap: 20px;
+    margin: 10px;
 }

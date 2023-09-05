@@ -1,0 +1,30 @@
+/* Item.css */
+.CardItem {
+    display: inline-block;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    width: 30%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ItemHeader {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .ItemImg {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .Info {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .ItemFooter {
+    text-align: center;
+  }
+  
