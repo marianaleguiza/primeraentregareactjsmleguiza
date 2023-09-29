@@ -1,0 +1,14 @@
+.Option {
+    background-color: #fcfcfc;
+    color:#000000;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.Option:hover {
+    background-color: #000000;
+    border: thin #ffffff;
+    color: #ffffff;
+}

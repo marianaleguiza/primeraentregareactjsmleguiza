@@ -3,23 +3,27 @@ import classes from './App.module.css'
 import NavBar from './Components/NavBar/NavBar'
 import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
+import Cart from './Components/Cart/Cart';
 
 
-function App() {
+const  App = () => {
   return (
     <>
       <div>
         <BrowserRouter>
+        <CartProvider>
           <NavBar />
           <Routes>
             <Route path="/" element={<ItemListContainer greeting={'Todos los productos'} />} />
             <Route path='/category/:categoryId' element={<ItemListContainer greeting={'Productos por Categoria '}/>} />
             <Route path='/detail/:productId' element={<ItemDetailContainer />} />
-            
+            <Route path='/cart' elemet={<Cart />}/>
             
           </Routes>
           <h2 className={classes.title}>Aloha!🌴  </h2>
+          </CartProvider>
         </BrowserRouter>
       </div>
     </>

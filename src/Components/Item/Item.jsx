@@ -1,6 +1,7 @@
 import './Item.css'
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
 
 const Item = ({id, name, img, price, stock}) => {
     const navigate = useNavigate()
