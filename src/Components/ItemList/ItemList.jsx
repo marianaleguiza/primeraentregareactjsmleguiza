@@ -1,12 +1,15 @@
-import Item from '../Item/Item.jsx'
+import Item from "../Item/Item"
 
-const ItemList = ({products }) => {
-    return(
-        <div className='ListGroup'>
-            {products.map(prod => <Item key={prod.id} {...prod} />)}
+const ItemList = ({ products }) => {
+    return (
+        <div onClick={() => console.log('item list')}>
+            {products.map(product => {
+                return (
+                    <Item key={product.id} {...product}/>
+                )
+            })}
         </div>
     )
 }
 
-
-export default ItemList 
+export default ItemList

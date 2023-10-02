@@ -1,30 +1,52 @@
-import { useEffect, useState } from "react"
-import ItemCount from "../ItemCount/ItemCount.jsx"
-import { getProducts, getProductByCategory } from '../../asyncMock'
-import ItemList from '../ItemList/ItemList.jsx'
+import { useState, useEffect, memo } from 'react'
+import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router-dom'
+import { db } from '../../services/firebase/firebaseConfig.js'
 
-const ItemListContainer = ({greeting}) => {
-    
-        const [products, setProducts] = useState ([])
-        const {categoryId} = useParams()
-        useEffect(()=>{
-            const asyncFunction = categoryId ? getProductByCategory : getProducts
-            
-            asyncFunction(categoryId)
-            .then(response =>{
-                setProducts(response)
+import { getDocs, collection, query, where, limit } from 'firebase/firestore'
+
+const ItemListMemo = memo(ItemList)
+
+const ItemListContainer = ({ greeting }) => {
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    const { categoryId } = useParams()
+
+    useEffect(() => {
+        setLoading(true)
+
+        const productsRef = !categoryId 
+            ? collection(db, 'productos')
+            : query(collection(db, 'productos'), where('categoryId', '==', categoryId))
+
+        getDocs(productsRef)
+            .then(querySnapshot => {
+                const productsAdapted = querySnapshot.docs.map(doc => {
+                    const fields = doc.data()
+                    return { id: doc.id, ...fields }
+                })
+
+                setProducts(productsAdapted)
             })
             .catch(error => {
                 console.error(error)
             })
-        }, [categoryId])
-    return(
-        <div>
-            <h2>{greeting}</h2>
-            <ItemList products={products}/> 
-            <ItemCount initial={1} stock={30} onAdd={(quantity) => console.log('Cantidad Agregada', quantity)} />  
-        </div>
+            .finally(() => {
+                setLoading(false)
+            })
+    }, [categoryId])
+
+
+    if(loading) {
+        return <h1>Cargando productos...</h1>
+    }
+
+    return (
+        <main onClick={() => console.log('itemlistcontainer')}>
+            <h1>{greeting}</h1>
+            {products.length > 0 ? <ItemListMemo products={products}/> : <h1>No hay productos disponibles</h1> }
+        </main>
     )
 }
 
