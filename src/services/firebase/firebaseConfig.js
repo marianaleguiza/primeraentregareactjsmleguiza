@@ -1,5 +1,6 @@
 import {initializeApp} from "firebase/app";
 import {getFirestore} from "firebase/firestore";
+import { StrictMode } from "react";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBcihFH5PoqLChnwW-J9BdMyW4nRrs8Xkc",
@@ -13,3 +14,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
+

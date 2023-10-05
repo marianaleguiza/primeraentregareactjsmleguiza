@@ -17,8 +17,8 @@ const Checkout = () => {
             const objOrder = {
                 buyer: {
                     name: 'Mariana Leguiza',
-                    phone: '123456789',
-                    email: 'contact@gmail.com'
+                    phone: '1163085381',
+                    email: 'mariana.keguiza@gmail.com'
                 },
                 items: cart,
                 total
